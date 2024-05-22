@@ -24,7 +24,7 @@ int NPAF(std::vector<int>& X, int s) {
 int main() {
     int r = 3; // odd length
 
-    std::vector<int> X = {-1, -1, -1};
+    std::vector<int> X = {-1, -1, 1};
     std::cout << NPAF(X, 1) << std::endl;
     std::cout << NPAF(X, 2) << std::endl;
 
