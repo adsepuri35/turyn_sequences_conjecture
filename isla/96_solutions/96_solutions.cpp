@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include "json.hpp"
 
 void bruteForcing96Solutions() {
     //Create csv file
@@ -30,6 +29,7 @@ void bruteForcing96Solutions() {
             }
         }
     }
+    file.close();
 }
 
 int main() {
