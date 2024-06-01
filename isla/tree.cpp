@@ -3,17 +3,28 @@
 #include <stdexcept>
 #include <string>
 
-std::vector<int> W;
-std::vector<int> X;
-std::vector<int> Y;
-std::vector<int> Z;
+int r = 5;
 
+std::vector<int> W(r);
+std::vector<int> X(r);
+std::vector<int> Y(r);
+std::vector<int> Z(r);
 
-void generateEquations(int r) {
+std::vector<std::vector<int>> equations;
+
+void intializeEquationVectors(int r) {
+    for (int i = 1; i < r; i++) {
+        std::vector<int> equation(i * 8, 0);
+        equations.push_back(equation);
+    }
+}
+
+void printEquations(int r) {
     std::string seq[] = {"w", "x", "y", "z"};
     for (int s = 1; s < r; s++) {
         std::string equation = "Equation " + std::to_string(s) + " = ";
         std::string lastTerm;
+        int termCount = 0;
 
         for (int i = 0; i < 4; i++) {
             for (int j = 1; j < r; j++) {
@@ -24,33 +35,24 @@ void generateEquations(int r) {
                     equation += lastTerm + " + ";
                 }
                 lastTerm = seq[i] + "_" + std::to_string(j) + " * " + seq[i] + "_" + std::to_string(j + s);
+                termCount++;
             }
         }
         equation += lastTerm;
         std::cout << equation << std::endl;
+        std::cout << "Number of terms: " << termCount << std::endl;
     }
 }
 
-int initializeSequences(int r) {
-    W.resize(r);
-    X.resize(r);
-    Y.resize(r);
-    Z.resize(r);
-}
-
-
 int main() {
-    int r = 5;
-    
     if (r < 3) {
         throw std::runtime_error("r must be at least 3");
     } else if (r % 2 == 0) {
         throw std::runtime_error("r must be odd");
     }
 
-    initializeSequences(r);
-
-    generateEquations(r);
+    //printEquations(r);
+    //intializeEquationVectors(r);
 
     return 0;
 }
